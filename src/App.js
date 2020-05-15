@@ -1,26 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import HeadBanner from "./components/HeadBanner";
+import Navbar from "./components/Navbar";
+import Home from "./pages/HomePage";
+import product from "./pages/ProductPage";
+import SingleProduct from "./pages/SingleProduct";
+import CartPage from "./pages/CartPage";
+import ErrorPage from "./pages/ErrorPage";
+import ContactPage from "./pages/ContactPage";
+import { Route, Switch } from "react-router-dom";
+
+import "./App.css";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	return (
+		<div className="App">
+			<HeadBanner />
+			<Navbar />
+			<Switch>
+				<Route exact path="/" component={Home} />{" "}
+				<Route exact path="/product/" component={product} />{" "}
+				<Route exact path="/product/:id" component={SingleProduct} />{" "}
+				<Route exact path="/contact/" component={ContactPage} />{" "}
+				<Route exact path="/cartpage/" component={CartPage} />{" "}
+				<Route component={ErrorPage} />{" "}
+			</Switch>{" "}
+		</div>
+	);
 }
 
 export default App;

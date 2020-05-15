@@ -1,38 +1,76 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Gugi&family=Lato:wght@100&family=Open+Sans&family=Roboto&family=Sofia&display=swap');
+:root {
+    --primary-color: #45ccb8;
+    --primary-RGBA: rgba(0, 0, 0, 0.3);
+    --light-gray: #2b3032a1;
+    --border: #2b303218;
+    --text-color: #ff686b;
+    --roboto: 'Roboto', sans-serif;
+    --gugi: 'Gugi', cursive;
+    --sofia: 'Sofia', cursive;
+    --main-white: #fff;
+    --main-black: #222;
+    --main-transition: all 0.3s ease-in-out;
+    --main-spacing: 0.3rem;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.primary-color {
+    color: var(--primary-color);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.bg-primary-color {
+    background-color: var(--primary-color)!important;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.text-color {
+    color: var(--text-color);
 }
 
-.App-link {
-  color: #61dafb;
+.font-roboto {
+    font-family: var(--roboto);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.lightblue {
+    color: lightblue;
 }
+
+
+/**/
+
+
+/*.text-title {
+    font-family: "Montserrat", sans-serif;
+    font-weight: bold;
+    letter-spacing: var(--mainSpacing);
+    text-transform: capitalize;
+}
+
+.text-main {
+    color: var(--primaryColor);
+}
+
+body {
+    font-family: "Open Sans", sans-serif !important;
+    background: var(--light-gray) !important;
+    color: var(--mainBlack);
+}
+
+.main-link {
+    padding: 0.5rem 1rem;
+    background: var(--primaryColor);
+    color: var(--mainWhite);
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: var(--mainSpacing);
+    outline: 2px solid var(--primaryColor);
+    outline-offset: 4px;
+    border: none;
+    transition: var(--mainTransition);
+}
+
+.main-link:hover {
+    background: var(--mainGrey);
+    text-decoration: none;
+    color: var(--primaryColor);
+    outline-color: var(--darkGray);
+}*/
