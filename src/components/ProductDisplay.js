@@ -54,7 +54,6 @@ const ProductWrapper = styled.div`
 	}
 	.card:hover .card-img-top {
 		transform: scale(1.15);
-		opacity: 0.2;
 	}
 	.img-container {
 		position: relative;
@@ -71,10 +70,11 @@ const ProductWrapper = styled.div`
 		font-size: 2.5rem;
 		margin: 1rem;
 		padding: 0.5rem;
-		color: var(--primaryColor);
-		background: var(--mainBlack);
+		color: var(--primary-color);
+		background: var(--main-black);
 		border-radius: 0.5rem;
 	}
+
 	.card:hover .product-icons {
 		opacity: 1;
 	}

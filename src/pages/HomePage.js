@@ -3,6 +3,7 @@ import Hero from "../components/Hero";
 import { Link } from "react-router-dom";
 import Services from "../components/HomePage/Services";
 import Featured from "../components/HomePage/Featured";
+import BestSelllers from "../components/HomePage/BestSellers";
 
 export default function HomePage() {
 	return (
@@ -15,6 +16,7 @@ export default function HomePage() {
 			</Hero>{" "}
 			<Services />
 			<Featured />
+			<BestSelllers />
 		</div>
 	);
 }
