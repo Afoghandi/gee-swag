@@ -1,5 +1,20 @@
 import React from "react";
+import { ProductConsumer } from "../components/Context";
 
 export default function SingleProduct() {
-    return <h1 > Hellon SingleProduct < /h1>;
+	return (
+		<ProductConsumer>
+			{(value) => {
+				const { addToCart, singleProduct } = value;
+				const { title, image } = singleProduct;
+				return (
+					<div>
+						<h1>
+							Hello from single product {title} <img src={image} />
+						</h1>
+					</div>
+				);
+			}}
+		</ProductConsumer>
+	);
 }

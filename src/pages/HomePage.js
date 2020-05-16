@@ -9,9 +9,12 @@ export default function HomePage() {
 	return (
 		<div>
 			<Hero title="Ginger your swagger" max="true">
-				<button className="btn btn-light px-5 py-2">
+				<button className="main-link">
 					{" "}
-					<Link to="/product"> shop now </Link>{" "}
+					<Link to="/product" className="btxt">
+						{" "}
+						shop now{" "}
+					</Link>{" "}
 				</button>{" "}
 			</Hero>{" "}
 			<Services />

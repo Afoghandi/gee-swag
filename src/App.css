@@ -40,6 +40,61 @@
     color: lightblue;
 }
 
+.btxt {
+    font-style: var( --roboto);
+    text-align: center;
+    text-transform: uppercase;
+    color: var(--text-color);
+}
+
+.btxt:hover {
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.main-link {
+    text-decoration: none !important;
+    width: 210px;
+    height: 80px;
+    background: lightblue;
+    font-size: 2rem;
+    padding-left: 20px;
+    transform: rotate(-30deg) skewX(25deg) translate(0, 0);
+    transition: 0.5s;
+    box-shadow: -20px 20px 10px rgba(0, 0, 0, 0.5);
+}
+
+.main-link::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: -20px;
+    height: 80px;
+    width: 20px;
+    background: lightblue;
+    transform: 0.5s;
+    transform: rotate(0deg) skewY(-45deg);
+}
+
+.main-link::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: -10px;
+    height: 20px;
+    width: 100%;
+    background: lightblue;
+    transform: 0.5s;
+    transform: rotate(0deg) skewX(-45deg);
+}
+
+.main-link:hover {
+    transform: rotate(-30deg) skew(25deg) translate(20px, -15px);
+    box-shadow: -50px 50px rgba(0, 0, 0, 0.5);
+    background: var( --primary-color);
+    text-decoration: none !important;
+}
+
 
 /**/
 

@@ -32,7 +32,7 @@ export default function Footer() {
 										className="txtb"
 										placeholder="enter your email"
 									/>
-									<input type="submit" className="btn" value="submit"></input>
+									<input type="submit" className="btn" value="submit" />
 								</form>
 							</div>
 						</div>
@@ -47,6 +47,7 @@ const FooterWrapper = styled.div`
 	color: var(--main-white);
 	padding: 90px 0;
 	padding-left: 20px;
+	text-transform: capitalize;
 
 	.footer-container {
 		margin: auto;

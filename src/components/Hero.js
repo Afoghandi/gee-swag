@@ -10,13 +10,13 @@ export default function Hero({ img, max, title, children }) {
 					<div className="container text-center">
 						<div className="row">
 							<div className="col-md-7 col-sm-12">
-								<h1 className="title">{title} </h1>
-							</div>
-						</div>
+								<h1 className="title"> {title} </h1>{" "}
+							</div>{" "}
+						</div>{" "}
 					</div>{" "}
 				</div>{" "}
 				{children}
-			</div>
+			</div>{" "}
 		</HeroWrapper>
 	);
 }
@@ -31,7 +31,7 @@ const HeroWrapper = styled.div`
 		url(${(props) => props.img}) center/ cover no-repeat;
 	.title {
 		padding-top: 2rem;
-		font-size: 3.5rem;
+		font-size: 5.8rem;
 		text-shadow: 4px 4px 2px rgba(0, 0, 0, 0.3);
 		text-transform: uppercase;
 		letter-spacing: var(--mainSpacing);

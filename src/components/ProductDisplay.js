@@ -22,9 +22,19 @@ export default function ProductDisplay({ product }) {
 								/>
 								<div className="product-icons">
 									<Link to={`/product/${id}`}>
-										<FaSearch className="icon" />
+										<FaSearch
+											className="icon"
+											onClick={() => {
+												setSingleProduct(id);
+											}}
+										/>
 									</Link>
-									<FaCartPlus className="icon" />
+									<FaCartPlus
+										className="icon"
+										onClick={() => {
+											addToCart(id);
+										}}
+									/>
 								</div>
 							</div>
 							<div className="card-body d-flex justify-content-between">
