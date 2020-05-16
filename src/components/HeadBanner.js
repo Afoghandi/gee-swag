@@ -9,31 +9,33 @@ export default function Navbar() {
 					<div className="col-md-4 col-sm-12 col-12">
 						<div className="btn-group">
 							<button className="btn border dropdown-toggle my-md-4 my-2 text-white">
-								Usd
-							</button>
-						</div>
-					</div>
+								Usd{" "}
+							</button>{" "}
+						</div>{" "}
+					</div>{" "}
 					<div className="col-md-4 col-12 text-center">
-						<h2 className=" my-md-3 site-title text-white"> Gee Swag</h2>
-					</div>
+						<h2 className=" my-md-3 site-title text-white"> Gee Swag </h2>{" "}
+					</div>{" "}
 					<div className="col-md-4 col-12 text-right">
 						<p className="my-md-4 header-links">
 							<a href="#" className="px-2">
 								Sign in
-							</a>
+							</a>{" "}
 							<a href="#" className="px-1">
-								Create an account
-							</a>
-						</p>
-					</div>
-				</div>
-			</div>
+								Create an account{" "}
+							</a>{" "}
+						</p>{" "}
+					</div>{" "}
+				</div>{" "}
+			</div>{" "}
 		</HeadBannerWrapper>
 	);
 }
 const HeadBannerWrapper = styled.nav`
 	background-color: var(--primary-color);
 	font-family: var(--roboto);
+	position: fixed !important;
+	position: sticky !important;
 	.site-title {
 		font-family: var(--gugi);
 	}

@@ -21,7 +21,7 @@ export const LinkData = [{
     },
     {
         id: 5,
-        name: "contact US",
+        name: "contact ",
         path: "/contact",
     },
 ];
