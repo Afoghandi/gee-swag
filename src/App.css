@@ -57,7 +57,7 @@
     width: 210px;
     height: 80px;
     background: lightblue;
-    font-size: 2rem;
+    font-size: 1.5rem;
     padding-left: 20px;
     transform: rotate(-30deg) skewX(25deg) translate(0, 0);
     transition: 0.5s;
@@ -93,6 +93,13 @@
     box-shadow: -50px 50px rgba(0, 0, 0, 0.5);
     background: var( --primary-color);
     text-decoration: none !important;
+}
+
+.text-title {
+    font-family: var( --roboto);
+    font-weight: bold;
+    letter-spacing: var( --main-spacing);
+    text-transform: capitalize;
 }
 
 

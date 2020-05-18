@@ -5,7 +5,7 @@ import { FaSearch, FaCartPlus } from "react-icons/fa";
 import { ProductConsumer } from "../components/Context";
 
 export default function ProductDisplay({ product }) {
-	const { id, image, brand, price } = product;
+	const { id, image, brand, price, title } = product;
 	return (
 		<ProductConsumer>
 			{(value) => {
@@ -38,8 +38,8 @@ export default function ProductDisplay({ product }) {
 								</div>
 							</div>
 							<div className="card-body d-flex justify-content-between">
-								<p className="mb-0"> {brand} </p>
-								<p className="mb-0 text-main"> £ {price} </p>
+								<p className="mb-0"> {title} </p>
+								<p className="mb-0 text-main"> £{price} </p>
 							</div>
 						</div>
 					</ProductWrapper>

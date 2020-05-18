@@ -18,29 +18,77 @@ class ProductProvider extends Component {
 		cartItems: 0,
 		cart: [],
 		bestsellerProduct: [],
+		subTotal: 0,
+		tax: 0,
+		total: 0,
+		price: 0,
+		brand: "all",
+		min: 0,
+		search: "",
+		shipping: false,
 	};
 	componentDidMount() {
 		this.setProducts(items);
 	}
 	setProducts = (product) => {
+		//store all products in variable
 		let sortProducts = product.map((item) => {
 			let { id } = item.sys;
 			let image = item.fields.image.fields.file.url;
 			let products = { id, ...item.fields, image };
 			return products;
 		});
+		// filter through product and find featured
 		let featuredProducts = sortProducts.filter(
 			(item) => item.featured === true
 		);
+		// filter through product and find bestsellere
 		let bestsellerProduct = sortProducts.filter(
 			(item) => item.bestseller === true
 		);
-		this.setState({
-			sortProducts,
+		//get max price
+		let maxPrice = Math.max(...sortProducts.map((item) => item.price));
+		this.setState(
+			{
+				sortProducts,
 
-			featuredProducts,
-			bestsellerProduct,
-			filteredProducts: sortProducts,
+				featuredProducts,
+
+				bestsellerProduct,
+				filteredProducts: sortProducts,
+				price: maxPrice,
+				max: maxPrice,
+			},
+			() => this.addTotals()
+		);
+	};
+
+	getTotal = () => {
+		let subTotal = 0;
+		let cartItems = 0;
+		this.state.cart.forEach((item) => {
+			subTotal += item.price;
+			cartItems += item.count;
+		});
+		subTotal = parseFloat(subTotal.toFixed(2));
+		let tax = subTotal * 0.2;
+		tax = parseFloat(tax.toFixed(2));
+		let total = subTotal + tax;
+		total = parseFloat(total.toFixed(2));
+		return {
+			subTotal,
+			cartItems,
+			tax,
+			total,
+		};
+	};
+	addTotals = () => {
+		const totals = this.getTotal();
+		this.setState({
+			subTotal: totals.subTotal,
+			tax: totals.tax,
+			cartItems: totals.cartItems,
+			total: totals.total,
 		});
 	};
 
@@ -68,10 +116,12 @@ class ProductProvider extends Component {
 			//round it up and turn it from a string
 			tempItem.total = parseFloat(tempItem.total.toFixed(2));
 		}
-		this.setState({
-			cart: [...tempCart],
-		});
-		console.log("been clicked");
+		this.setState(
+			{
+				cart: [...tempCart],
+			},
+			() => this.addTotals()
+		);
 	};
 
 	/**Setting single product */
@@ -104,6 +154,31 @@ class ProductProvider extends Component {
 			cartOpen: false,
 		});
 	};
+	handleChange = (event) => {
+		const name = event.target.name;
+		const value =
+			event.target.type === "checkbox"
+				? event.target.checked
+				: event.target.value;
+		this.setState(
+			{
+				[name]: value,
+			},
+			this.sortData
+		);
+	};
+	sortData = () => {
+		const { sortProducts, price, brand, shipping, search } = this.state;
+		//create a variable to store price as an integer
+		let tempPrice = parseInt(price);
+		let tempProducts = [...sortProducts];
+		tempProducts = tempProducts.filter((item) => item.price <= tempPrice);
+
+		if (brand !== "all") {
+			tempProducts = tempProducts.filter((item) => item.brand === brand);
+		}
+		this.setState({ filteredProducts: tempProducts });
+	};
 	render() {
 		return (
 			<ProductContext.Provider
@@ -115,6 +190,8 @@ class ProductProvider extends Component {
 					closeCart: this.closeCart,
 					setSingleProduct: this.setSingleProduct,
 					addToCart: this.addToCart,
+					addTotals: this.addTotals,
+					handleChange: this.handleChange,
 				}}
 			>
 				{" "}
