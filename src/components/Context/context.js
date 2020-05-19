@@ -67,7 +67,7 @@ class ProductProvider extends Component {
 		let subTotal = 0;
 		let cartItems = 0;
 		this.state.cart.forEach((item) => {
-			subTotal += item.price;
+			subTotal += item.total;
 			cartItems += item.count;
 		});
 		subTotal = parseFloat(subTotal.toFixed(2));
@@ -154,6 +154,60 @@ class ProductProvider extends Component {
 			cartOpen: false,
 		});
 	};
+	increment = (id) => {
+		//get everything from the state and set it as a variable
+		let tempCart = [...this.state.cart];
+		//find the item selectected by it's id
+		const cartItem = tempCart.find((item) => item.id === id);
+		//increase the item count by 1
+		cartItem.count++;
+		//recalculate the total
+		cartItem.total = cartItem.count * cartItem.price;
+		//turn it back into integer
+		cartItem.total = parseFloat(cartItem.total.toFixed(2));
+		//update state
+		this.setState({ cart: [...tempCart] }, () => {
+			//add a callback
+			this.addTotals();
+		});
+	};
+	decrement = (id) => {
+		let tempCart = [...this.state.cart];
+		const cartItem = tempCart.find((item) => item.id === id);
+		cartItem.count = cartItem.count - 1;
+		if (cartItem.count === 0) {
+			this.removeItem(id);
+		} else {
+			cartItem.total = cartItem.count * cartItem.price;
+			cartItem.total = parseFloat(cartItem.total.toFixed(2));
+			this.setState(
+				{
+					cart: [...tempCart],
+				},
+				() => {
+					this.addTotals();
+				}
+			);
+		}
+	};
+	//
+	removeItem = (id) => {
+		let tempCart = [...this.state.cart];
+		tempCart = tempCart.filter((item) => item.id !== id);
+		this.setState(
+			{
+				cart: [...tempCart],
+			},
+			() => {
+				this.addTotals();
+			}
+		);
+	};
+	clearCart = () => {
+		this.setState({
+			cart: [],
+		});
+	};
 	handleChange = (event) => {
 		const name = event.target.name;
 		const value =
@@ -171,14 +225,36 @@ class ProductProvider extends Component {
 		const { sortProducts, price, brand, shipping, search } = this.state;
 		//create a variable to store price as an integer
 		let tempPrice = parseInt(price);
+		//get all items from sortProducts
 		let tempProducts = [...sortProducts];
-		tempProducts = tempProducts.filter((item) => item.price <= tempPrice);
-
+		//filter through for price
+		tempProducts = tempProducts.find((item) => item.price <= tempPrice);
+		//if the box doesn't say 'all' filter for brand
 		if (brand !== "all") {
 			tempProducts = tempProducts.filter((item) => item.brand === brand);
 		}
+		//filter shipping
+		if (shipping) {
+			tempProducts = tempProducts.filter((item) => item.freeShipping === true);
+		}
+		if (search.length > 0) {
+			tempProducts = tempProducts.filter((item) => {
+				//in case users uses caps lock
+				let tempSearch = search.toLowerCase();
+				//start search by first letter till the full length
+				let tempTitle = item.title.toLowerCase().slice(0, search.length);
+				if (tempSearch === tempTitle) {
+					return item;
+				}
+				let tempBrand = item.brand.toLowerCase().slice(0, search.length);
+				if (tempSearch === tempBrand) {
+					return item;
+				}
+			});
+		}
 		this.setState({ filteredProducts: tempProducts });
 	};
+
 	render() {
 		return (
 			<ProductContext.Provider
@@ -192,6 +268,10 @@ class ProductProvider extends Component {
 					addToCart: this.addToCart,
 					addTotals: this.addTotals,
 					handleChange: this.handleChange,
+					increment: this.increment,
+					decrement: this.decrement,
+					clearCart: this.clearCart,
+					removeItem: this.removeItem,
 				}}
 			>
 				{" "}

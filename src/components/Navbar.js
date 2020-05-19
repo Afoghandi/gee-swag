@@ -18,13 +18,12 @@ export default function Navbar() {
 				} = value;
 				return (
 					<NavWrapper>
-						<div className="logo"></div>
+						<div className="logo"> </div>
 						<ul className="nav-links">
 							{links.map((item) => {
 								return (
 									<li className="a-tag" key={item.id}>
 										<Link className="a-tag" to={item.path}>
-											{" "}
 											{item.name}
 										</Link>
 									</li>
@@ -35,8 +34,10 @@ export default function Navbar() {
 							<FaBars onClick={handleSidebar} />
 						</div>
 						<div className="nav-icon">
-							<FaCartPlus className="nav-cart" onClick={handleCart} />
-							<div className="cart-items">{cartItems}</div>
+							<Link to="/cartpage/">
+								<FaCartPlus className="nav-cart" onClick={handleCart} />
+								<div className="cart-items"> {cartItems} </div>
+							</Link>
 						</div>
 					</NavWrapper>
 				);
